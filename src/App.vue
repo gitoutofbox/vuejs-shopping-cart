@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheNavigation />
+    <TheHeader />
     <div class="container">
       <div class="row">
         <div class="col-3">
@@ -15,13 +15,13 @@
   </div>
 </template>
 <script>
-import TheNavigation from "@/components/TheNavigation";
+import TheHeader from '@/components/TheHeader';
 import TheLeftSidebar from "@/components/TheLeftSidebar";
 import TheFooter from "@/components/TheFooter";
 
 export default {
   components: {
-    TheNavigation,
+    TheHeader,
     TheLeftSidebar,
     TheFooter
   },

@@ -19,8 +19,13 @@
 </template>
 
 <script>
+// import { serverBus } from '../main';
 export default {
   name: "TheNavigation",
+  created() {
+  // serverBus.$on('serverSelected', (server) => {
+  // });
+ }
 };
 </script>
 <style scoped>

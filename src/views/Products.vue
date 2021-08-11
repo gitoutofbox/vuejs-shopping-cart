@@ -5,7 +5,7 @@
       v-for="product in products"
       :key="product.id"
     >
-      <Product :product="product" />
+      <Product :product="product"/>
     </div>
   </div>
 </template>
@@ -33,11 +33,7 @@ export default {
       const resp = await fetch(this.baseUrl + "static/json/products.json");
       const products = await resp.json();
       this.products = products.data;
-    },
-    // formatPrice(value) {
-    //     let val = (value/1).toFixed(2).replace('.', ',')
-    //     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-    // }
+    }
   },
 };
 </script>
