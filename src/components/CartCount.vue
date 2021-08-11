@@ -14,7 +14,7 @@ import { serverBus } from "../main";
 export default {
   name: "CartCount",
   created() {
-    serverBus.$on("addToCart", () => {
+    serverBus.$on("addRemoveCart", () => {
       let itemsInCart = localStorage.getItem("itemsInCart");
       itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
       this.count = itemsInCart.length;

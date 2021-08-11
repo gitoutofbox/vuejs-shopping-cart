@@ -7,10 +7,20 @@
         {{ product.shortInfo }}
       </div>
       <div class="btn-group">
-        <button class="btn btn-primary btn-sm" v-on:click="addToCart(product)">
+        <button
+          class="btn btn-primary btn-sm"
+          v-on:click="addRemoveCart(product)"
+          v-if="productIdInCart.indexOf(product.id) === -1"
+        >
           Add to Cart
         </button>
-        <button class="btn btn-dark btn-sm">Go to Cart</button>
+        <button
+          class="btn btn-danger btn-sm"
+          v-on:click="addRemoveCart(product)"
+          v-else
+        >
+          Remove from Cart
+        </button>
         <button class="btn btn-success btn-sm">Add to wishlist</button>
       </div>
     </div>
@@ -24,15 +34,25 @@
 import { serverBus } from "../main";
 export default {
   name: "Product",
+  created() {
+    let itemsInCart = localStorage.getItem("itemsInCart");
+    itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
+    this.productIdInCart = itemsInCart.map(item => item.id);
+  },
   props: {
     product: Object,
+  },
+  data() {
+      return {
+        productIdInCart: []
+      }
   },
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    async addToCart(product) {
+    async addRemoveCart(product) {
       // Call API here
       let itemsInCart = localStorage.getItem("itemsInCart");
       itemsInCart =
@@ -43,9 +63,9 @@ export default {
       } else {
         itemsInCart.push(product);
       }
-
+        this.productIdInCart = itemsInCart.map(item => item.id);
       localStorage.setItem("itemsInCart", JSON.stringify(itemsInCart));
-      serverBus.$emit("addToCart", product);
+      serverBus.$emit("addRemoveCart", product);
     },
   },
 };
