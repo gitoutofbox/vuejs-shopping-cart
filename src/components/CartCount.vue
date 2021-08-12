@@ -14,10 +14,9 @@ import { serverBus } from "../main";
 export default {
   name: "CartCount",
   created() {
+    this.updateCount();
     serverBus.$on("addRemoveCart", () => {
-      let itemsInCart = localStorage.getItem("itemsInCart");
-      itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
-      this.count = itemsInCart.length;
+      this.updateCount();
     });
     
   },
@@ -36,6 +35,13 @@ export default {
       count: 0,
     };
   },
+  methods: {
+    updateCount () {
+      let itemsInCart = localStorage.getItem("itemsInCart");
+      itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
+      this.count = itemsInCart.length;
+    }
+  }
 };
 </script>
 <style scoped>
