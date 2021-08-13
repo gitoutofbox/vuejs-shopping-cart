@@ -2,10 +2,10 @@
   <div class="row product-block">
     <div class="col-sm-10">
       <router-link :to="{ name: 'ProductDetails', params: { slug: product.slug } }">
-        <h4>{{ product.name }}</h4>
+        <h4>{{ product.name | capitalize }}</h4>
       </router-link>
       <div>
-        {{ formatPrice(product.price) }} <br />
+        {{ product.price | currency('$') }} <br />
         {{ product.shortInfo }}
       </div>
 
@@ -49,20 +49,12 @@
 
 <script>
 import { serverBus } from "../main";
+import shared from "@/shared/productStorage";
 export default {
   name: "Product",
   created() {
-    let itemsInCart = localStorage.getItem("itemsInCart");
-    itemsInCart =
-      itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
-    this.productIdInCart = itemsInCart.map((item) => item.id);
-
-    let itemsInWishlist = localStorage.getItem("itemsInWishlist");
-    itemsInWishlist =
-      itemsInWishlist && itemsInWishlist.length
-        ? JSON.parse(itemsInWishlist)
-        : [];
-    this.productIdInWishlist = itemsInWishlist.map((item) => item.id);
+    this.productIdInCart = shared.getProductIdsInStorage();
+    this.productIdInWishlist = shared.getProductIdsInWishlist();
   },
   props: {
     product: Object,
@@ -74,10 +66,6 @@ export default {
     };
   },
   methods: {
-    formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    },
     addRemoveCart(product) {
       // Call API here
       let itemsInCart = localStorage.getItem("itemsInCart");

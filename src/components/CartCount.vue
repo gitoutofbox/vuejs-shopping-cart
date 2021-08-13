@@ -11,6 +11,7 @@
 
 <script>
 import { serverBus } from "../main";
+import shared from "@/shared/productStorage";
 export default {
   name: "CartCount",
   created() {
@@ -37,9 +38,10 @@ export default {
   },
   methods: {
     updateCount () {
-      let itemsInCart = localStorage.getItem("itemsInCart");
-      itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
-      this.count = itemsInCart.length;
+      // let itemsInCart = localStorage.getItem("itemsInCart");
+      // itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
+      // this.count = itemsInCart.length;
+      this.count = shared.getProductIdsInStorage().length;
     }
   }
 };

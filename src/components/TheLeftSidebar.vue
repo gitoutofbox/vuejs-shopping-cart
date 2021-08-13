@@ -23,6 +23,8 @@
 </style>
 <script>
 import { serverBus } from "../main";
+import shared from "@/shared/productStorage";
+
 export default {
   name: "TheLeftSidebar",
   created() {
@@ -38,10 +40,7 @@ export default {
   },
   methods: {
     updateCount() {
-      let itemsInWishlist = localStorage.getItem("itemsInWishlist");
-      itemsInWishlist =
-        itemsInWishlist && itemsInWishlist.length ? JSON.parse(itemsInWishlist) : [];
-      this.count = itemsInWishlist.length;
+    this.count = shared.getProductIdsInWishlist().length;
     },
   },
 };
