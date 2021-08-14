@@ -1,11 +1,13 @@
 <template>
   <span class="cart-main">
-    <font-awesome-icon
-      icon="shopping-cart"
-      :size="size"
-      :style="{ color: color }"
-    />
-    <span class="cart-count" :style="{ color: color }">{{ count }}</span>
+    <router-link :to="{name: 'ShoppingCart'}">
+      <font-awesome-icon
+        icon="shopping-cart"
+        :size="size"
+        :style="{ color: color }"
+      />
+      <span class="cart-count" :style="{ color: color }">{{ count }}</span>
+    </router-link>
   </span>
 </template>
 
@@ -19,7 +21,6 @@ export default {
     serverBus.$on("addRemoveCart", () => {
       this.updateCount();
     });
-    
   },
   props: {
     color: {
@@ -37,13 +38,13 @@ export default {
     };
   },
   methods: {
-    updateCount () {
+    updateCount() {
       // let itemsInCart = localStorage.getItem("itemsInCart");
       // itemsInCart = itemsInCart && itemsInCart.length ? JSON.parse(itemsInCart) : [];
       // this.count = itemsInCart.length;
       this.count = shared.getProductIdsInStorage().length;
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

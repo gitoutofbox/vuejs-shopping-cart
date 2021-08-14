@@ -12,6 +12,5 @@ export default {
     itemsInWishlist = itemsInWishlist && itemsInWishlist.length ? JSON.parse(itemsInWishlist) : [];
     return itemsInWishlist.map((item) => item.id);
   },
-  
 };
 </script>

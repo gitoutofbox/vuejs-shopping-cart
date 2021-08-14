@@ -1,20 +1,22 @@
 <template>
   <div class="row product-block">
-    <div class="col-sm-10">
-      <router-link :to="{ name: 'ProductDetails', params: { slug: product.slug } }">
-        <h4>{{ product.name | capitalize }}</h4>
-      </router-link>
-      <div>
-        {{ product.price | currency('$') }} <br />
-        {{ product.shortInfo }}
-      </div>
-
-      <ProductActions :product="product" :buttons="buttons" />
-    </div>
     <div class="col-sm-2">
       <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }">
         <img :src="product.image" alt="product.name" class="product-img" />
       </router-link>
+    </div>
+    <div class="col-sm-8">
+      <router-link
+        :to="{ name: 'ProductDetails', params: { slug: product.slug } }"
+      >
+        <h4>{{ product.name | capitalize }}</h4>
+      </router-link>
+      <div>{{ product.shortInfo }}</div>
+
+      <ProductActions :product="product" :buttons="buttons" />
+    </div>
+    <div class="col-sm-2">
+         {{ product.price | currency("$") }}
     </div>
   </div>
 </template>
@@ -23,9 +25,9 @@
 import ProductActions from "@/components/ProductActions";
 
 export default {
-  name: "Product",
+  name: "CartProduct",
   components: {
-    ProductActions
+    ProductActions,
   },
   created() {
     // Nothing here
@@ -33,11 +35,11 @@ export default {
   props: {
     product: Object,
     buttons: {
-        type: Array,
-        default: function() {
-          return ['cart', 'wishlist']
-        }
-      }
+      type: Array,
+      default: function () {
+        return ["cart", "wishlist"];
+      },
+    },
   },
   data() {
     return {

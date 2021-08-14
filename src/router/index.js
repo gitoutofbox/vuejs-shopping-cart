@@ -31,6 +31,21 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "products" */ "../views/ProductDetails.vue"),
   },
+  {
+    path:'/shopping-cart',
+    name: "ShoppingCart",
+    component: () => import(/* webpackChunkName: "shoppingCart" */ "../views/ShoppingCart.vue")
+  },
+  {
+    path:'/checkout',
+    name: "Checkout",
+    component: () => import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue")
+  },
+  {
+    path:'/wishlist',
+    name: "Wishlist",
+    component: () => import(/* webpackChunkName: "wishlist" */ "../views/Wishlist.vue")
+  }
 ];
 
 const router = new VueRouter({
