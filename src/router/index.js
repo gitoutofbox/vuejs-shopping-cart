@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,20 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: '/login',
+    name: "Login",
+    component: Login,
+    beforeEnter: (to, from, next) => {
+      let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn)
+      if(isLoggedIn === 'true') {
+        next("/");
+      } else {
+        next();
+      }
+    } 
   },
   {
     path: "/about",
@@ -22,8 +37,16 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () =>
-      import(/* webpackChunkName: "products" */ "../views/Products.vue"),
+    component: () =>import(/* webpackChunkName: "products" */ "../views/Products.vue"),
+    beforeEnter: (to, from, next) => {
+      let isLoggedIn = sessionStorage.getItem('isLoggedIn');
+      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn)
+      if(isLoggedIn === 'true') {
+        next();
+      } else {
+        next("/login");
+      }
+    } 
   },
   {
     path: "/products/:slug",

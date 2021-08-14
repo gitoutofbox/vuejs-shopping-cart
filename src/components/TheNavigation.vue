@@ -12,6 +12,12 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
+          <li class="nav-item" v-if="!isLoggedIn">
+            <router-link class="nav-link" to="/login">Login</router-link>
+          </li>
+          <li class="nav-item" v-if="isLoggedIn">
+            <a class="nav-link btn btn-link" v-on:click="logout()">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -19,15 +25,36 @@
 </template>
 
 <script>
-// import { serverBus } from '../main';
+import { serverBus } from "../main";
 export default {
   name: "TheNavigation",
   created() {
-  // serverBus.$on('serverSelected', (server) => {
-  // });
- }
+    let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    if (isLoggedIn === "true") {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+    serverBus.$on("userLogin", (isLoginSuccess) => {
+      this.isLoggedIn = isLoginSuccess;
+    });
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+    };
+  },
+  methods: {
+    logout() {
+      sessionStorage.removeItem('isLoggedIn');
+      serverBus.$emit("userLogin", false);
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 <style scoped>
-nav {margin-bottom: 15px;}
+nav {
+  margin-bottom: 15px;
+}
 </style>
