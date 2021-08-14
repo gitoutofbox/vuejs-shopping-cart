@@ -51,6 +51,13 @@ export default {
       errors: {},
     };
   },
+  beforeRouteLeave(to, from, next) {
+      if(confirm('It is "beforeRouteLeave" testing.\nAre you sure you don\'t want to login?')) {
+          next()
+      } else {
+          next(false);
+      }
+  },
   methods: {
     submit(e) {
       e.preventDefault();
