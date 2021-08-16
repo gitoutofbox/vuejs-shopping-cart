@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import TheHeader from '@/components/TheHeader';
+import TheHeader from "@/components/TheHeader";
 import TheLeftSidebar from "@/components/TheLeftSidebar";
 import TheFooter from "@/components/TheFooter";
 
@@ -23,9 +23,8 @@ export default {
   components: {
     TheHeader,
     TheLeftSidebar,
-    TheFooter
+    TheFooter,
   },
 };
 </script>
-<style>
-</style>
+<style></style>

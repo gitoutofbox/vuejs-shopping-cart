@@ -3,7 +3,10 @@
     <button
       class="btn btn-primary btn-sm"
       v-on:click="addRemoveCart(product)"
-      v-if="buttons.indexOf('cart') !== -1 && productIdInCart.indexOf(product.id) === -1"
+      v-if="
+        buttons.indexOf('cart') !== -1 &&
+        productIdInCart.indexOf(product.id) === -1
+      "
     >
       Add to Cart
     </button>
@@ -17,7 +20,10 @@
     <button
       class="btn btn-success btn-sm"
       v-on:click="addRemoveWishlist(product)"
-      v-if="buttons.indexOf('wishlist') !== -1 && productIdInWishlist.indexOf(product.id) === -1"
+      v-if="
+        buttons.indexOf('wishlist') !== -1 &&
+        productIdInWishlist.indexOf(product.id) === -1
+      "
     >
       Add to wishlist</button
     ><button
@@ -36,13 +42,13 @@ import shared from "@/shared/productStorage";
 export default {
   name: "ProductActions",
   props: {
-      product: Object,
-      buttons: {
-        type: Array,
-        default: function() {
-          return ['cart', 'wishlist']
-        }
-      }
+    product: Object,
+    buttons: {
+      type: Array,
+      default: function () {
+        return ["cart", "wishlist"];
+      },
+    },
   },
   created() {
     this.productIdInCart = shared.getProductIdsInStorage();

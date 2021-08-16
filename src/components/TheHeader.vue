@@ -29,7 +29,7 @@ header {
 .cart-count {
   position: absolute;
   right: 15px;
-  top:50%;
+  top: 50%;
   transform: translateY(-50%);
 }
 </style>

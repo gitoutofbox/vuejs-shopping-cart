@@ -14,15 +14,15 @@
 import { serverBus } from "../main";
 
 export default {
-    name: 'Checkout',
-    created() {
-        this.clearCartStorage();
+  name: "Checkout",
+  created() {
+    this.clearCartStorage();
+  },
+  methods: {
+    clearCartStorage() {
+      localStorage.removeItem("itemsInCart");
+      serverBus.$emit("addRemoveCart", []);
     },
-    methods: {
-        clearCartStorage() {
-            localStorage.removeItem('itemsInCart');
-            serverBus.$emit("addRemoveCart", []);
-        }
-    }
-}
+  },
+};
 </script>

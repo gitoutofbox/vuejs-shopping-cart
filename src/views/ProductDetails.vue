@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-10">
       <h4>{{ product.name | capitalize }}</h4>
-      <div class="price">{{ product.price | currency('$') }}</div>
+      <div class="price">{{ product.price | currency("$") }}</div>
       <ProductActions :product="product" />
       <div class="price">{{ product.longInfo }}</div>
     </div>
@@ -18,7 +18,7 @@ import ProductActions from "@/components/ProductActions";
 export default {
   name: "ProductDetails",
   components: {
-    ProductActions
+    ProductActions,
   },
   created() {
     this.fetchData();

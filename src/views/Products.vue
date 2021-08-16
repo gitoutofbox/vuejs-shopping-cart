@@ -3,12 +3,8 @@
     <div class="col-sm-12">
       <h3 class="page-header">All Products</h3>
     </div>
-    <div
-      class="col-sm-12"
-      v-for="product in products"
-      :key="product.id"
-    >
-      <Product :product="product"/>
+    <div class="col-sm-12" v-for="product in products" :key="product.id">
+      <Product :product="product" />
     </div>
   </div>
 </template>
@@ -36,8 +32,7 @@ export default {
       const resp = await fetch(this.baseUrl + "static/json/products.json");
       const products = await resp.json();
       this.products = products.data;
-    }
+    },
   },
 };
 </script>
-

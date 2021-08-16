@@ -46,11 +46,11 @@ export default {
   },
   methods: {
     logout() {
-      sessionStorage.removeItem('isLoggedIn');
+      sessionStorage.removeItem("isLoggedIn");
       serverBus.$emit("userLogin", false);
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

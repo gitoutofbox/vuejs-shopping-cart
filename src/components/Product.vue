@@ -1,11 +1,13 @@
 <template>
   <div class="row product-block">
     <div class="col-sm-10">
-      <router-link :to="{ name: 'ProductDetails', params: { slug: product.slug } }">
+      <router-link
+        :to="{ name: 'ProductDetails', params: { slug: product.slug } }"
+      >
         <h4>{{ product.name | capitalize }}</h4>
       </router-link>
       <div>
-        {{ product.price | currency('$') }} <br />
+        {{ product.price | currency("$") }} <br />
         {{ product.shortInfo }}
       </div>
 
@@ -25,7 +27,7 @@ import ProductActions from "@/components/ProductActions";
 export default {
   name: "Product",
   components: {
-    ProductActions
+    ProductActions,
   },
   created() {
     // Nothing here
@@ -33,11 +35,11 @@ export default {
   props: {
     product: Object,
     buttons: {
-        type: Array,
-        default: function() {
-          return ['cart', 'wishlist']
-        }
-      }
+      type: Array,
+      default: function () {
+        return ["cart", "wishlist"];
+      },
+    },
   },
   data() {
     return {

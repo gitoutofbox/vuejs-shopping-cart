@@ -12,18 +12,18 @@ const routes = [
     component: Home,
   },
   {
-    path: '/login',
+    path: "/login",
     name: "Login",
     component: Login,
     beforeEnter: (to, from, next) => {
-      let isLoggedIn = sessionStorage.getItem('isLoggedIn');
-      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn)
-      if(isLoggedIn === 'true') {
+      let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn);
+      if (isLoggedIn === "true") {
         next("/");
       } else {
         next();
       }
-    } 
+    },
   },
   {
     path: "/about",
@@ -37,16 +37,17 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () =>import(/* webpackChunkName: "products" */ "../views/Products.vue"),
+    component: () =>
+      import(/* webpackChunkName: "products" */ "../views/Products.vue"),
     beforeEnter: (to, from, next) => {
-      let isLoggedIn = sessionStorage.getItem('isLoggedIn');
-      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn)
-      if(isLoggedIn === 'true') {
+      let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn);
+      if (isLoggedIn === "true") {
         next();
       } else {
         next("/login");
       }
-    } 
+    },
   },
   {
     path: "/products/:slug",
@@ -55,25 +56,30 @@ const routes = [
       import(/* webpackChunkName: "products" */ "../views/ProductDetails.vue"),
   },
   {
-    path:'/shopping-cart',
+    path: "/shopping-cart",
     name: "ShoppingCart",
-    component: () => import(/* webpackChunkName: "shoppingCart" */ "../views/ShoppingCart.vue")
+    component: () =>
+      import(
+        /* webpackChunkName: "shoppingCart" */ "../views/ShoppingCart.vue"
+      ),
   },
   {
-    path:'/checkout',
+    path: "/checkout",
     name: "Checkout",
-    component: () => import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue")
+    component: () =>
+      import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
   },
   {
-    path:'/wishlist',
+    path: "/wishlist",
     name: "Wishlist",
-    component: () => import(/* webpackChunkName: "wishlist" */ "../views/Wishlist.vue")
-  }
+    component: () =>
+      import(/* webpackChunkName: "wishlist" */ "../views/Wishlist.vue"),
+  },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  linkExactActiveClass: 'active',
+  mode: "history",
+  linkExactActiveClass: "active",
   routes,
 });
 

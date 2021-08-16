@@ -9,7 +9,10 @@ export default {
 
   getProductIdsInWishlist() {
     let itemsInWishlist = localStorage.getItem("itemsInWishlist");
-    itemsInWishlist = itemsInWishlist && itemsInWishlist.length ? JSON.parse(itemsInWishlist) : [];
+    itemsInWishlist =
+      itemsInWishlist && itemsInWishlist.length
+        ? JSON.parse(itemsInWishlist)
+        : [];
     return itemsInWishlist.map((item) => item.id);
   },
 };

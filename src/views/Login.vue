@@ -1,10 +1,20 @@
 <template>
   <div class="row">
     <div class="col-sm-8">
-        <div class="alert alert-info">Use <strong>admin@admin.com/test@1234</strong></div>
-        <div class="alert alert-warning">This login using <strong>session storate</strong>, so it work persists in different browser tabs</div>
+      <div class="alert alert-info">
+        Use <strong>admin@admin.com/test@1234</strong>
+      </div>
+      <div class="alert alert-warning">
+        This login using <strong>session storate</strong>, so it work persists
+        in different browser tabs
+      </div>
 
-        <div class="alert alert-danger" v-if="errors.emailOrPassword && errors.emailOrPassword != ''"><strong>Error:</strong> {{errors.emailOrPassword}}</div>
+      <div
+        class="alert alert-danger"
+        v-if="errors.emailOrPassword && errors.emailOrPassword != ''"
+      >
+        <strong>Error:</strong> {{ errors.emailOrPassword }}
+      </div>
 
       <form v-on:submit="submit($event)" novalidate>
         <div class="mb-3">
@@ -18,8 +28,11 @@
             aria-describedby="emailHelp"
             v-model="email"
           />
-          <div class="form-test text-danger" v-if="errors.email && errors.email != ''">
-           {{errors.email}}
+          <div
+            class="form-test text-danger"
+            v-if="errors.email && errors.email != ''"
+          >
+            {{ errors.email }}
           </div>
         </div>
         <div class="mb-3">
@@ -30,8 +43,11 @@
             id="exampleInputPassword1"
             v-model="password"
           />
-          <div class="form-test text-danger" v-if="errors.password && errors.password != ''">
-           {{errors.password}}
+          <div
+            class="form-test text-danger"
+            v-if="errors.password && errors.password != ''"
+          >
+            {{ errors.password }}
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -52,35 +68,45 @@ export default {
     };
   },
   beforeRouteLeave(to, from, next) {
-      if(confirm('It is "beforeRouteLeave" testing.\nAre you sure you don\'t want to login?')) {
-          next()
-      } else {
-          next(false);
-      }
+    if (
+      confirm(
+        'It is "beforeRouteLeave" testing.\nAre you sure you don\'t want to login?'
+      )
+    ) {
+      next();
+    } else {
+      next(false);
+    }
   },
   methods: {
     submit(e) {
       e.preventDefault();
-      if(this.validate()) {
-          sessionStorage.setItem('isLoggedIn', true)
-          if(this.email === "admin@admin.com" && this. password === 'test@1234') {
-              serverBus.$emit("userLogin", true);
-              this.$router.push(this.$route.query.redirect || '/')
-          } else {
-              this.addErrorMessage("emailOrPassword", "Wrong Email or pssword. Use admin@admin.com/test@1234");
-          }
+      if (this.validate()) {
+        sessionStorage.setItem("isLoggedIn", true);
+        if (this.email === "admin@admin.com" && this.password === "test@1234") {
+          serverBus.$emit("userLogin", true);
+          this.$router.push(this.$route.query.redirect || "/");
+        } else {
+          this.addErrorMessage(
+            "emailOrPassword",
+            "Wrong Email or pssword. Use admin@admin.com/test@1234"
+          );
+        }
       }
     },
     validate() {
       this.errors = {};
       !this.email && this.addErrorMessage("email", "Email is required");
-      this.email && !this.isValidEmail(this.email) && this.addErrorMessage("email", "Invalid Email");
+      this.email &&
+        !this.isValidEmail(this.email) &&
+        this.addErrorMessage("email", "Invalid Email");
 
-      !this.password && this.addErrorMessage("password", "Password is required");
-      return (Object.keys(this.errors).length === 0) ? true : false;
+      !this.password &&
+        this.addErrorMessage("password", "Password is required");
+      return Object.keys(this.errors).length === 0 ? true : false;
     },
     isValidEmail(email) {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         return true;
       } else {
         return false;

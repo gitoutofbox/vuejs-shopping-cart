@@ -1,6 +1,6 @@
 <template>
   <span class="cart-main">
-    <router-link :to="{name: 'ShoppingCart'}">
+    <router-link :to="{ name: 'ShoppingCart' }">
       <font-awesome-icon
         icon="shopping-cart"
         :size="size"

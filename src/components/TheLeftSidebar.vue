@@ -10,7 +10,10 @@
           </router-link>
         </li>
         <li class="list-group-item">
-          <router-link :to="{ name: 'ShoppingCart' }">Shopping Cart</router-link></li>
+          <router-link :to="{ name: 'ShoppingCart' }"
+            >Shopping Cart</router-link
+          >
+        </li>
       </ul>
     </div>
   </div>
@@ -50,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-a{
+a {
   text-decoration: none;
 }
 </style>

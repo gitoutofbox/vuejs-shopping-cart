@@ -16,7 +16,7 @@
       <ProductActions :product="product" :buttons="buttons" />
     </div>
     <div class="col-sm-2">
-         {{ product.price | currency("$") }}
+      {{ product.price | currency("$") }}
     </div>
   </div>
 </template>

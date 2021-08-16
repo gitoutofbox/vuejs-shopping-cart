@@ -3,15 +3,14 @@ import App from "./App.vue";
 import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./helpers/filters";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSpinner, faShoppingCart }from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add( faSpinner, faShoppingCart)
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSpinner, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+library.add(faSpinner, faShoppingCart);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-
-import "@/assets/style.css"
+import "@/assets/style.css";
 
 Vue.config.productionTip = false;
 
