@@ -65,21 +65,27 @@ export default {
       email: "admin@admin.com",
       password: "test@1234",
       errors: {},
+      showNavigationConfirm: true,
     };
   },
   beforeRouteLeave(to, from, next) {
-    if (
-      confirm(
-        'It is "beforeRouteLeave" testing.\nAre you sure you don\'t want to login?'
-      )
-    ) {
-      next();
+    if (this.showNavigationConfirm) {
+      if (
+        confirm(
+          'It is "beforeRouteLeave" testing.\nAre you sure you don\'t want to login?'
+        )
+      ) {
+        next();
+      } else {
+        next(false);
+      }
     } else {
-      next(false);
+      next();
     }
   },
   methods: {
     submit(e) {
+      this.showNavigationConfirm = false;
       e.preventDefault();
       if (this.validate()) {
         sessionStorage.setItem("isLoggedIn", true);
@@ -87,6 +93,7 @@ export default {
           serverBus.$emit("userLogin", true);
           this.$router.push(this.$route.query.redirect || "/");
         } else {
+          this.showNavigationConfirm = true;
           this.addErrorMessage(
             "emailOrPassword",
             "Wrong Email or pssword. Use admin@admin.com/test@1234"
