@@ -4,9 +4,9 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./helpers/filters";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSpinner, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faShoppingCart, faEye, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-library.add(faSpinner, faShoppingCart);
+library.add(faSpinner, faShoppingCart, faEye, faWindowClose);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

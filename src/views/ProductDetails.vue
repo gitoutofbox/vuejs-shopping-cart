@@ -1,24 +1,14 @@
 <template>
-  <div class="row">
-    <div class="col-sm-10">
-      <h4>{{ product.name | capitalize }}</h4>
-      <div class="price">{{ product.price | currency("$") }}</div>
-      <ProductActions :product="product" />
-      <div class="price">{{ product.longInfo }}</div>
-    </div>
-    <div class="col-sm-2">
-      <img :src="product.image" alt="product.name" class="product-img" />
-    </div>
-  </div>
+  <TheProductDetails :product="product"/>
 </template>
 
 <script>
-import ProductActions from "@/components/ProductActions";
+import TheProductDetails from "@/components/TheProductDetails";
 
 export default {
   name: "ProductDetails",
   components: {
-    ProductActions,
+    TheProductDetails,
   },
   created() {
     this.fetchData();
@@ -38,11 +28,5 @@ export default {
       product.length && (this.product = product[0]);
     },
   },
-};
-</script>
-
-<style scoped>
-.product-img {
-  height: 150px;
 }
-</style>
+</script>
