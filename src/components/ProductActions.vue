@@ -51,8 +51,13 @@ export default {
     },
   },
   created() {
-    this.productIdInCart = shared.getProductIdsInStorage();
-    this.productIdInWishlist = shared.getProductIdsInWishlist();
+    this.updateCartItems();
+    serverBus.$on("addRemoveCart", () => {
+      this.updateCartItems();
+    });
+    serverBus.$on("addRemoveWishlist", () => {
+      this.updateCartItems();
+    });
   },
   data() {
     return {
@@ -95,6 +100,10 @@ export default {
       localStorage.setItem("itemsInWishlist", JSON.stringify(itemsInWishlist));
       serverBus.$emit("addRemoveWishlist", product);
     },
+    updateCartItems() {
+      this.productIdInCart = shared.getProductIdsInStorage();
+      this.productIdInWishlist = shared.getProductIdsInWishlist();
+    }
   },
 };
 </script>
