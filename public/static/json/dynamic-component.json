@@ -1,0 +1,14 @@
+{
+    "status": "success",
+    "statusMessage": "",
+    "data": [
+        {
+            "name": "About",
+            "path": "components/Greet"
+        },
+        {
+            "name": "Emoji",
+            "path": "components/Emoji"
+        }
+    ]
+}
