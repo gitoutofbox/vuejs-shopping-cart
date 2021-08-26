@@ -3,7 +3,7 @@
     "statusMessage": "",
     "data": [
         {
-            "name": "About",
+            "name": "Greet",
             "path": "components/Greet"
         },
         {

@@ -41,7 +41,7 @@ const routes = [
       import(/* webpackChunkName: "products" */ "../views/Products.vue"),
     beforeEnter: (to, from, next) => {
       let isLoggedIn = sessionStorage.getItem("isLoggedIn");
-      console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn);
+      // console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn);
       if (isLoggedIn === "true") {
         next();
       } else {
@@ -54,6 +54,15 @@ const routes = [
     name: "ProductDetails",
     component: () =>
       import(/* webpackChunkName: "products" */ "../views/ProductDetails.vue"),
+    beforeEnter: (to, from, next) => {
+      let isLoggedIn = sessionStorage.getItem("isLoggedIn");
+      // console.log("isLoggedIn", isLoggedIn, typeof isLoggedIn);
+      if (isLoggedIn === "true") {
+        next();
+      } else {
+        next("/login");
+      }
+    },
   },
   {
     path: "/shopping-cart",
