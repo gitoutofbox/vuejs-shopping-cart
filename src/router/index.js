@@ -90,6 +90,9 @@ const router = new VueRouter({
   mode: "history",
   linkExactActiveClass: "active",
   routes,
+  base: process.env.NODE_ENV === 'production'
+    ? '/shopping-cart/'
+    : '/',
 });
 
 export default router;
